@@ -33,20 +33,30 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "outputFormat", required = false, defaultValue = "HTML")
     private String outputFormat;
 
+    private final RunnerParameterValidator parameterValidator = new RunnerParameterValidator();
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        Options options = new Options();
-        options.setNewApiPath(newApi);
-        options.setMavenRepoUrl(mavenRepoUrl);
-        options.setGroupId(groupId);
-        options.setArtifactId(artifactId);
-        options.setOutputFilePath(outputFilePath);
-        options.setOutputFormat(OutputFormat.valueOf(outputFormat));
+        RunnerParameter parameter = createRunnerParameter();
+        getLog().debug("The following parameters are set for Swagger Brake: " + parameter.toString());
+        parameterValidator.validate(parameter);
+        Options options = OptionsFactory.create(parameter);
         try {
             Starter.start(options);
         } catch (LatestArtifactDownloadException e) {
             getLog().info(format("Latest version of the artifact could not be retrieved from %s with %s:%s", mavenRepoUrl, groupId, artifactId));
             getLog().info("Assuming this is the first version of the artifact, skipping check for breaking changes");
         }
+    }
+
+    private RunnerParameter createRunnerParameter() {
+        return RunnerParameter.builder()
+                .newApi(newApi)
+                .mavenRepoUrl(mavenRepoUrl)
+                .groupId(groupId)
+                .artifactId(artifactId)
+                .outputFilePath(outputFilePath)
+                .outputFormat(outputFormat)
+                .build();
     }
 }
