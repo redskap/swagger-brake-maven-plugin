@@ -6,10 +6,34 @@
 
     <groupId>io.redskap</groupId>
     <artifactId>swagger-brake-maven-plugin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>maven-plugin</packaging>
 
-    <name>Swagger Brake Maven plugin</name>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>A plugin to check Swagger definition files for any breaking API changes</description>
+    <url>https://github.com/redskap/swagger-brake</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Arnold Galovics</name>
+            <email>info@arnoldgalovics.com</email>
+            <organization>redskap.io</organization>
+            <organizationUrl>http://redskap.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/redskap/swagger-brake.git</connection>
+        <developerConnection>scm:git:ssh://github.com:redskap/swagger-brake.git</developerConnection>
+        <url>https://github.com/redskap/swagger-brake</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,6 +115,7 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    <skipStagingRepositoryClose>true</skipStagingRepositoryClose>
                 </configuration>
             </plugin>
         </plugins>
