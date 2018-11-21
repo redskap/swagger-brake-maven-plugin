@@ -16,7 +16,7 @@ There are 2 properties which are mandatory for this reason:
         <plugin>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.1.0</version>
             <executions>
                 <execution>
                     <goals>
