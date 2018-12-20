@@ -16,7 +16,7 @@ There are 2 properties which are mandatory for this reason:
         <plugin>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.1</version>
             <executions>
                 <execution>
                     <goals>
@@ -36,6 +36,8 @@ There are 2 properties which are mandatory for this reason:
 ## Plugin configuration
 The following plugin properties are configurable:
 - `mavenRepoUrl` - The Maven repository URL where the previous version of the artifact can be found.
+- `mavenRepoUsername` - The username for accessing the Maven repository.
+- `mavenRepoPassword` - The password for accessing the Maven repository.
 - `newApi` - The path of the API file with which the latest version will be compared to
 - `groupId` - The groupId of the artifact. Defaults to `project.group`
 - `artifactId` - The artifactId. Defaults to `project.name`
