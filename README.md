@@ -9,6 +9,8 @@ There are 2 properties which are mandatory for this reason:
 - `mavenRepoUrl`
 - `newApi`
 
+An example project can be found [here](https://github.com/redskap/swagger-brake-example/tree/master/swagger-brake-maven-example).
+
 ## Usage
 ```xml
 <build>
