@@ -21,6 +21,12 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "mavenRepoUrl", required = true)
     private String mavenRepoUrl;
 
+    @Parameter(name = "mavenRepoUsername", required = false)
+    private String mavenRepoUsername;
+
+    @Parameter(name = "mavenRepoPassword", required = false)
+    private String mavenRepoPassword;
+
     @Parameter(name = "groupId", required = false, defaultValue = "${project.groupId}")
     private String groupId;
 
@@ -53,6 +59,8 @@ public class SwaggerBrakeMojo extends AbstractMojo {
         return RunnerParameter.builder()
                 .newApi(newApi)
                 .mavenRepoUrl(mavenRepoUrl)
+                .mavenRepoUsername(mavenRepoUsername)
+                .mavenRepoPassword(mavenRepoPassword)
                 .groupId(groupId)
                 .artifactId(artifactId)
                 .outputFilePath(outputFilePath)
