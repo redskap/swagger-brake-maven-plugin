@@ -1,11 +1,6 @@
 package io.redskap.swagger.brake.maven;
 
-import static java.lang.String.format;
-
 import io.redskap.swagger.brake.runner.Options;
-import io.redskap.swagger.brake.runner.OutputFormat;
-import io.redskap.swagger.brake.runner.Starter;
-import io.redskap.swagger.brake.runner.exception.LatestArtifactDownloadException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -40,6 +35,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     private String outputFormat;
 
     private final RunnerParameterValidator parameterValidator = new RunnerParameterValidator();
+    private final Executor executor = new Executor(new StarterWrapper(), getLog());
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -47,12 +43,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
         getLog().debug("The following parameters are set for Swagger Brake: " + parameter.toString());
         parameterValidator.validate(parameter);
         Options options = OptionsFactory.create(parameter);
-        try {
-            Starter.start(options);
-        } catch (LatestArtifactDownloadException e) {
-            getLog().info(format("Latest version of the artifact could not be retrieved from %s with %s:%s", mavenRepoUrl, groupId, artifactId));
-            getLog().info("Assuming this is the first version of the artifact, skipping check for breaking changes");
-        }
+        executor.execute(options);
     }
 
     private RunnerParameter createRunnerParameter() {
