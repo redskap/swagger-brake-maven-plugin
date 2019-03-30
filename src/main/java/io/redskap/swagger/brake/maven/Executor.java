@@ -21,7 +21,7 @@ public class Executor {
         try {
             Collection<BreakingChange> bcs = starter.start(options);
             if (isNotEmpty(bcs)) {
-                throw new MojoFailureException("Breaking change has been found. See report further details.");
+                throw new MojoFailureException("Breaking change has been found. See report further details at " + options.getOutputFilePath());
             }
         } catch (LatestArtifactDownloadException e) {
             log.info(format("Latest version of the artifact could not be retrieved from %s with %s:%s",
