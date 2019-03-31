@@ -6,7 +6,7 @@
 
     <groupId>io.redskap</groupId>
     <artifactId>swagger-brake-maven-plugin</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.0</version>
     <packaging>maven-plugin</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
