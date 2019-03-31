@@ -20,6 +20,7 @@ public class OptionsFactoryTest {
             .artifactId("artifactId")
             .outputFilePath("outputFilePath")
             .outputFormat("HTML")
+            .deprecatedApiDeletionAllowed(true)
             .build();
         // when
         Options result = OptionsFactory.create(parameter);
@@ -32,6 +33,7 @@ public class OptionsFactoryTest {
         assertThat(result.getArtifactId()).isEqualTo(parameter.getArtifactId());
         assertThat(result.getOutputFilePath()).isEqualTo(parameter.getOutputFilePath());
         assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
+        assertThat(result.getDeprecatedApiDeletionAllowed()).isEqualTo(parameter.getDeprecatedApiDeletionAllowed());
     }
 
     @Test

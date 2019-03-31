@@ -34,6 +34,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "outputFormat", required = false, defaultValue = "HTML")
     private String outputFormat;
 
+    @Parameter(name = "deprecatedApiDeletionAllowed", required = false)
+    private Boolean deprecatedApiDeletionAllowed;
+
     private final RunnerParameterValidator parameterValidator = new RunnerParameterValidator();
     private final Executor executor = new Executor(new StarterWrapper(), getLog());
 
@@ -56,6 +59,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .artifactId(artifactId)
                 .outputFilePath(outputFilePath)
                 .outputFormat(outputFormat)
+                .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)
                 .build();
     }
 }

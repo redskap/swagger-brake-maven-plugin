@@ -18,7 +18,7 @@ An example project can be found [here](https://github.com/redskap/swagger-brake-
         <plugin>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>0.2.1</version>
+            <version>0.3.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -45,6 +45,7 @@ The following plugin properties are configurable:
 - `artifactId` - The artifactId. Defaults to `project.name`
 - `outputFilePath` - The output where the report will be generated. Defaults to `project.buildDir/swagger-brake`
 - `outputFormat` - The format of the report. Defaults to `HTML`. Possible values can be found [here](https://github.com/redskap/swagger-brake#reporting).
+- `deprecatedApiDeletionAllowed` - Whether deletion of deprecated APIs should be allowed. More info [here](https://github.com/redskap/swagger-brake#api-deprecation-handling).
 
 ## License
 ```text

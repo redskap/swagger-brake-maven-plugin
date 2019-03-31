@@ -16,4 +16,5 @@ public class RunnerParameter {
     private String artifactId;
     private String outputFilePath;
     private String outputFormat;
+    private Boolean deprecatedApiDeletionAllowed;
 }
