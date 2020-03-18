@@ -18,7 +18,7 @@ An example project can be found [here](https://github.com/redskap/swagger-brake-
         <plugin>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>0.3.0</version>
+            <version>1.0.0</version>
             <executions>
                 <execution>
                     <goals>
