@@ -26,7 +26,7 @@ public class Executor {
         } catch (LatestArtifactDownloadException e) {
             log.info(format("Latest version of the artifact could not be retrieved from %s with %s:%s",
                 options.getMavenRepoUrl(), options.getGroupId(), options.getArtifactId()));
-            log.info("Assuming this is the first version of the artifact, skipping check for breaking changes");
+            log.info("Assuming this is the first version of the artifact, skipping check for breaking changes", e);
         }
     }
 }

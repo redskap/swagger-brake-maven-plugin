@@ -46,6 +46,8 @@ The following plugin properties are configurable:
 - `outputFilePath` - The output where the report will be generated. Defaults to `project.buildDir/swagger-brake`
 - `outputFormat` - The format of the report. Defaults to `HTML`. Possible values can be found [here](https://github.com/redskap/swagger-brake#reporting).
 - `deprecatedApiDeletionAllowed` - Whether deletion of deprecated APIs should be allowed. More info [here](https://github.com/redskap/swagger-brake#api-deprecation-handling).
+- `betaApiExtensionName` - Defines which vendor extension attribute to use for denoting the beta APIs. More info [here](https://github.com/redskap/swagger-brake#beta-api-support).
+- `apiFilename` - Specifies the filename of the contract within the downloaded artifact. More info [here](https://github.com/redskap/swagger-brake#latest-artifact-resolution).
 
 ## License
 ```text
