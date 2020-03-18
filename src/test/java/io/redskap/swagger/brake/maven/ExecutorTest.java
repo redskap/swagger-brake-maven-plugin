@@ -37,7 +37,8 @@ public class ExecutorTest {
         // when
         underTest.execute(options);
         // then
-        then(log).should(times(2)).info(anyString());
+        then(log).should(times(1)).info(anyString());
+        then(log).should(times(1)).info(anyString(), any(Exception.class));
     }
 
     @Test
