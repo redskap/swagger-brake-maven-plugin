@@ -17,4 +17,5 @@ public class RunnerParameter {
     private String outputFilePath;
     private String outputFormat;
     private Boolean deprecatedApiDeletionAllowed;
+    private String betaApiExtensionName;
 }

@@ -21,6 +21,7 @@ public class OptionsFactoryTest {
             .outputFilePath("outputFilePath")
             .outputFormat("HTML")
             .deprecatedApiDeletionAllowed(true)
+            .betaApiExtensionName("something.yaml")
             .build();
         // when
         Options result = OptionsFactory.create(parameter);
@@ -34,6 +35,7 @@ public class OptionsFactoryTest {
         assertThat(result.getOutputFilePath()).isEqualTo(parameter.getOutputFilePath());
         assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
         assertThat(result.getDeprecatedApiDeletionAllowed()).isEqualTo(parameter.getDeprecatedApiDeletionAllowed());
+        assertThat(result.getBetaApiExtensionName()).isEqualTo(parameter.getBetaApiExtensionName());
     }
 
     @Test

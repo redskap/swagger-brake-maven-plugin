@@ -16,6 +16,7 @@ public class OptionsFactory {
         options.setOutputFilePath(parameter.getOutputFilePath());
         options.setOutputFormats(ImmutableSet.of(resolveOutputFormat(parameter)));
         options.setDeprecatedApiDeletionAllowed(parameter.getDeprecatedApiDeletionAllowed());
+        options.setBetaApiExtensionName(parameter.getBetaApiExtensionName());
         return options;
     }
 
