@@ -48,7 +48,7 @@
         <dependency>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake</artifactId>
-            <version>0.3.0</version>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
