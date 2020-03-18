@@ -36,6 +36,7 @@ public class OptionsFactoryTest {
         assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
         assertThat(result.getDeprecatedApiDeletionAllowed()).isEqualTo(parameter.getDeprecatedApiDeletionAllowed());
         assertThat(result.getBetaApiExtensionName()).isEqualTo(parameter.getBetaApiExtensionName());
+        assertThat(result.getApiFilename()).isEqualTo(parameter.getApiFilename());
     }
 
     @Test

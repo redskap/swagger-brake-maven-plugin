@@ -40,6 +40,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "betaApiExtensionName", required = false)
     private String betaApiExtensionName;
 
+    @Parameter(name = "apiFilename", required = false)
+    private String apiFilename;
+
     private final RunnerParameterValidator parameterValidator = new RunnerParameterValidator();
     private final Executor executor = new Executor(new StarterWrapper(), getLog());
 
@@ -64,6 +67,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .outputFormat(outputFormat)
                 .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)
                 .betaApiExtensionName(betaApiExtensionName)
+                .apiFilename(apiFilename)
                 .build();
     }
 }
