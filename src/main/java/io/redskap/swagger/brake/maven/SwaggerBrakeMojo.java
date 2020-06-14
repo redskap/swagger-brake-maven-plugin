@@ -1,6 +1,7 @@
 package io.redskap.swagger.brake.maven;
 
 import io.redskap.swagger.brake.runner.Options;
+import io.redskap.swagger.brake.runner.OptionsValidator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -16,6 +17,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "mavenRepoUrl", required = true)
     private String mavenRepoUrl;
 
+    @Parameter(name = "mavenSnapshotRepoUrl", required = true)
+    private String mavenSnapshotRepoUrl;
+
     @Parameter(name = "mavenRepoUsername", required = false)
     private String mavenRepoUsername;
 
@@ -27,6 +31,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
 
     @Parameter(name = "artifactId", required = false, defaultValue = "${project.artifactId}")
     private String artifactId;
+
+    @Parameter(name = "currentVersion", required = false, defaultValue = "${project.version}")
+    private String currentVersion;
 
     @Parameter(name = "outputFilePath", required = false, defaultValue = "${project.build.directory}/swagger-brake")
     private String outputFilePath;
@@ -43,15 +50,16 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "apiFilename", required = false)
     private String apiFilename;
 
-    private final RunnerParameterValidator parameterValidator = new RunnerParameterValidator();
     private final Executor executor = new Executor(new StarterWrapper(), getLog());
+    
+    private final OptionsValidator optionsValidator = new OptionsValidator();
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         RunnerParameter parameter = createRunnerParameter();
         getLog().debug("The following parameters are set for Swagger Brake: " + parameter.toString());
-        parameterValidator.validate(parameter);
         Options options = OptionsFactory.create(parameter);
+        optionsValidator.validate(options);
         executor.execute(options);
     }
 
@@ -59,10 +67,12 @@ public class SwaggerBrakeMojo extends AbstractMojo {
         return RunnerParameter.builder()
                 .newApi(newApi)
                 .mavenRepoUrl(mavenRepoUrl)
+                .mavenSnapshotRepoUrl(mavenSnapshotRepoUrl)
                 .mavenRepoUsername(mavenRepoUsername)
                 .mavenRepoPassword(mavenRepoPassword)
                 .groupId(groupId)
                 .artifactId(artifactId)
+                .currentVersion(currentVersion)
                 .outputFilePath(outputFilePath)
                 .outputFormat(outputFormat)
                 .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)

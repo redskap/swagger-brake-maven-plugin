@@ -8,10 +8,12 @@ public class OptionsFactory {
     public static Options create(RunnerParameter parameter) {
         Options options = new Options();
         options.setMavenRepoUrl(parameter.getMavenRepoUrl());
+        options.setMavenSnapshotRepoUrl(parameter.getMavenSnapshotRepoUrl());
         options.setMavenRepoUsername(parameter.getMavenRepoUsername());
         options.setMavenRepoPassword(parameter.getMavenRepoPassword());
         options.setGroupId(parameter.getGroupId());
         options.setArtifactId(parameter.getArtifactId());
+        options.setCurrentArtifactVersion(parameter.getCurrentVersion());
         options.setNewApiPath(parameter.getNewApi());
         options.setOutputFilePath(parameter.getOutputFilePath());
         options.setOutputFormats(ImmutableSet.of(resolveOutputFormat(parameter)));

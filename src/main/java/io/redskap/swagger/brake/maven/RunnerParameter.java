@@ -10,10 +10,12 @@ import lombok.ToString;
 public class RunnerParameter {
     private String newApi;
     private String mavenRepoUrl;
+    private String mavenSnapshotRepoUrl;
     private String mavenRepoUsername;
     private String mavenRepoPassword;
     private String groupId;
     private String artifactId;
+    private String currentVersion;
     private String outputFilePath;
     private String outputFormat;
     private Boolean deprecatedApiDeletionAllowed;

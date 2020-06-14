@@ -14,10 +14,12 @@ public class OptionsFactoryTest {
         RunnerParameter parameter = RunnerParameter.builder()
             .newApi("newApi")
             .mavenRepoUrl("repoUrl")
+            .mavenSnapshotRepoUrl("snapshotRepoUrl")
             .mavenRepoUsername("username")
             .mavenRepoPassword("password")
             .groupId("groupId")
             .artifactId("artifactId")
+            .currentVersion("1.0.0")
             .outputFilePath("outputFilePath")
             .outputFormat("HTML")
             .deprecatedApiDeletionAllowed(true)
@@ -28,10 +30,12 @@ public class OptionsFactoryTest {
         // then
         assertThat(result.getNewApiPath()).isEqualTo(parameter.getNewApi());
         assertThat(result.getMavenRepoUrl()).isEqualTo(parameter.getMavenRepoUrl());
+        assertThat(result.getMavenSnapshotRepoUrl()).isEqualTo(parameter.getMavenSnapshotRepoUrl());
         assertThat(result.getMavenRepoUsername()).isEqualTo(parameter.getMavenRepoUsername());
         assertThat(result.getMavenRepoPassword()).isEqualTo(parameter.getMavenRepoPassword());
         assertThat(result.getGroupId()).isEqualTo(parameter.getGroupId());
         assertThat(result.getArtifactId()).isEqualTo(parameter.getArtifactId());
+        assertThat(result.getCurrentArtifactVersion()).isEqualTo(parameter.getCurrentVersion());
         assertThat(result.getOutputFilePath()).isEqualTo(parameter.getOutputFilePath());
         assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
         assertThat(result.getDeprecatedApiDeletionAllowed()).isEqualTo(parameter.getDeprecatedApiDeletionAllowed());
