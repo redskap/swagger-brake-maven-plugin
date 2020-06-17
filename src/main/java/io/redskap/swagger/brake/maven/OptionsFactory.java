@@ -7,6 +7,7 @@ import io.redskap.swagger.brake.runner.OutputFormat;
 public class OptionsFactory {
     public static Options create(RunnerParameter parameter) {
         Options options = new Options();
+        options.setOldApiPath(parameter.getOldApi());
         options.setMavenRepoUrl(parameter.getMavenRepoUrl());
         options.setMavenSnapshotRepoUrl(parameter.getMavenSnapshotRepoUrl());
         options.setMavenRepoUsername(parameter.getMavenRepoUsername());

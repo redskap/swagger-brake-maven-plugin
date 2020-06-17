@@ -11,6 +11,9 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 @Mojo(name = "check", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public class SwaggerBrakeMojo extends AbstractMojo {
+    @Parameter(name = "oldApi", required = false)
+    private String oldApi;
+
     @Parameter(name = "newApi", required = true)
     private String newApi;
 
@@ -65,6 +68,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
 
     private RunnerParameter createRunnerParameter() {
         return RunnerParameter.builder()
+                .oldApi(oldApi)
                 .newApi(newApi)
                 .mavenRepoUrl(mavenRepoUrl)
                 .mavenSnapshotRepoUrl(mavenSnapshotRepoUrl)

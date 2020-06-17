@@ -8,6 +8,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class RunnerParameter {
+    private String oldApi;
     private String newApi;
     private String mavenRepoUrl;
     private String mavenSnapshotRepoUrl;

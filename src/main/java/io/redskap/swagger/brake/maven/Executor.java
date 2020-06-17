@@ -24,8 +24,8 @@ public class Executor {
                 throw new MojoFailureException("Breaking change has been found. See report further details at " + options.getOutputFilePath());
             }
         } catch (LatestArtifactDownloadException e) {
-            log.info(format("Latest version of the artifact could not be retrieved from %s with %s:%s",
-                options.getMavenRepoUrl(), options.getGroupId(), options.getArtifactId()));
+            log.info(format("Latest version of the artifact could not be retrieved from %s, %s with %s:%s",
+                options.getMavenRepoUrl(), options.getMavenSnapshotRepoUrl(), options.getGroupId(), options.getArtifactId()));
             log.info("Assuming this is the first version of the artifact, skipping check for breaking changes", e);
         }
     }
