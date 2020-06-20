@@ -3,11 +3,11 @@ Maven plugin for [Swagger Brake](https://github.com/redskap/swagger-brake).
 
 The plugin is building on Swagger Brake's latest artifact resolution feature to determine the so 
 called `old` version of the API thus it's mandatory to provide the repository URL which will be used
-to download the proper artifact.
+to download the proper artifact. If you want to skip the latest artifact resolution 
+you can use a path to the latest version of your API to compare.
 
-There are a few properties which are mandatory for this reason:
-- `mavenRepoUrl`
-- `mavenSnapshotRepoUrl`
+There are 2 properties which are mandatory for this reason:
+- `mavenRepoUrl` and `mavenSnapshotUrl` or `oldApi`
 - `newApi`
 
 An example project can be found [here](https://github.com/redskap/swagger-brake-example/tree/master/swagger-brake-maven-example).
