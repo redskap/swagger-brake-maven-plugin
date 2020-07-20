@@ -1,13 +1,18 @@
 package io.redskap.swagger.brake.maven;
 
+import com.google.common.collect.ImmutableList;
 import io.redskap.swagger.brake.runner.Options;
 import io.redskap.swagger.brake.runner.OptionsValidator;
+import io.redskap.swagger.brake.runner.OutputFormat;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
+import java.util.List;
 
 @Mojo(name = "check", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public class SwaggerBrakeMojo extends AbstractMojo {
@@ -17,10 +22,10 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "newApi", required = true)
     private String newApi;
 
-    @Parameter(name = "mavenRepoUrl", required = true)
+    @Parameter(name = "mavenRepoUrl", required = false)
     private String mavenRepoUrl;
 
-    @Parameter(name = "mavenSnapshotRepoUrl", required = true)
+    @Parameter(name = "mavenSnapshotRepoUrl", required = false)
     private String mavenSnapshotRepoUrl;
 
     @Parameter(name = "mavenRepoUsername", required = false)
@@ -41,8 +46,8 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "outputFilePath", required = false, defaultValue = "${project.build.directory}/swagger-brake")
     private String outputFilePath;
 
-    @Parameter(name = "outputFormat", required = false, defaultValue = "HTML")
-    private String outputFormat;
+    @Parameter(name = "outputFormats", required = false)
+    private List<String> outputFormats;
 
     @Parameter(name = "deprecatedApiDeletionAllowed", required = false)
     private Boolean deprecatedApiDeletionAllowed;
@@ -67,6 +72,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     }
 
     private RunnerParameter createRunnerParameter() {
+        List<String> oFormats = getOutputFormats();
         return RunnerParameter.builder()
                 .oldApi(oldApi)
                 .newApi(newApi)
@@ -78,10 +84,18 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .artifactId(artifactId)
                 .currentVersion(currentVersion)
                 .outputFilePath(outputFilePath)
-                .outputFormat(outputFormat)
+                .outputFormats(oFormats)
                 .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)
                 .betaApiExtensionName(betaApiExtensionName)
                 .apiFilename(apiFilename)
                 .build();
+    }
+
+    private List<String> getOutputFormats() {
+        if (CollectionUtils.isNotEmpty(outputFormats)) {
+            return outputFormats;
+        } else {
+            return ImmutableList.of(OutputFormat.HTML.name());
+        }
     }
 }

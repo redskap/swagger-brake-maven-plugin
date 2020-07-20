@@ -1,8 +1,14 @@
 package io.redskap.swagger.brake.maven;
 
-import com.google.common.collect.ImmutableSet;
 import io.redskap.swagger.brake.runner.Options;
 import io.redskap.swagger.brake.runner.OutputFormat;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 public class OptionsFactory {
     public static Options create(RunnerParameter parameter) {
@@ -17,14 +23,18 @@ public class OptionsFactory {
         options.setCurrentArtifactVersion(parameter.getCurrentVersion());
         options.setNewApiPath(parameter.getNewApi());
         options.setOutputFilePath(parameter.getOutputFilePath());
-        options.setOutputFormats(ImmutableSet.of(resolveOutputFormat(parameter)));
+        options.setOutputFormats(resolveOutputFormats(parameter));
         options.setDeprecatedApiDeletionAllowed(parameter.getDeprecatedApiDeletionAllowed());
         options.setBetaApiExtensionName(parameter.getBetaApiExtensionName());
         options.setApiFilename(parameter.getApiFilename());
         return options;
     }
 
-    private static OutputFormat resolveOutputFormat(RunnerParameter parameter) {
-        return OutputFormat.valueOf(parameter.getOutputFormat().toUpperCase());
+    private static Set<OutputFormat> resolveOutputFormats(RunnerParameter parameter) {
+        Collection<String> formats = parameter.getOutputFormats();
+        if (CollectionUtils.isEmpty(formats)) {
+            return Collections.emptySet();
+        }
+        return formats.stream().map(String::toUpperCase).map(OutputFormat::valueOf).collect(toSet());
     }
 }

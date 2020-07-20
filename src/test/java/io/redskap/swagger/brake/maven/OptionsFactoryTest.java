@@ -2,6 +2,7 @@ package io.redskap.swagger.brake.maven;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import io.redskap.swagger.brake.runner.Options;
 import io.redskap.swagger.brake.runner.OutputFormat;
@@ -21,7 +22,7 @@ public class OptionsFactoryTest {
             .artifactId("artifactId")
             .currentVersion("1.0.0")
             .outputFilePath("outputFilePath")
-            .outputFormat("HTML")
+            .outputFormats(ImmutableList.of("HTML"))
             .deprecatedApiDeletionAllowed(true)
             .betaApiExtensionName("something.yaml")
             .build();
@@ -54,7 +55,7 @@ public class OptionsFactoryTest {
             .groupId("groupId")
             .artifactId("artifactId")
             .outputFilePath("outputFilePath")
-            .outputFormat("html")
+            .outputFormats(ImmutableList.of("html"))
             .build();
         // when
         Options result = OptionsFactory.create(parameter);

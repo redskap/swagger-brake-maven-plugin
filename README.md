@@ -7,7 +7,7 @@ to download the proper artifact. If you want to skip the latest artifact resolut
 you can use a path to the latest version of your API to compare.
 
 There are 2 properties which are mandatory for this reason:
-- `mavenRepoUrl` and `mavenSnapshotUrl` or `oldApi`
+- `mavenRepoUrl` or `mavenSnapshotUrl` or `oldApi`
 - `newApi`
 
 An example project can be found [here](https://github.com/redskap/swagger-brake-example/tree/master/swagger-brake-maven-example).
@@ -47,7 +47,13 @@ The following plugin properties are configurable:
 - `groupId` - The groupId of the artifact. Defaults to `project.group`
 - `artifactId` - The artifactId. Defaults to `project.name`
 - `outputFilePath` - The output where the report will be generated. Defaults to `project.buildDir/swagger-brake`
-- `outputFormat` - The format of the report. Defaults to `HTML`. Possible values can be found [here](https://github.com/redskap/swagger-brake#reporting).
+- `outputFormats` - The format of the report. Defaults to `HTML`. Possible values can be found [here](https://github.com/redskap/swagger-brake#reporting).
+```xml
+<outputFormats>
+    <outputFormat>JSON</outputFormat>
+    <outputFormat>HTML</outputFormat>
+</outputFormats>
+```
 - `deprecatedApiDeletionAllowed` - Whether deletion of deprecated APIs should be allowed. More info [here](https://github.com/redskap/swagger-brake#api-deprecation-handling).
 - `betaApiExtensionName` - Defines which vendor extension attribute to use for denoting the beta APIs. More info [here](https://github.com/redskap/swagger-brake#beta-api-support).
 - `apiFilename` - Specifies the filename of the contract within the downloaded artifact. More info [here](https://github.com/redskap/swagger-brake#latest-artifact-resolution).
