@@ -19,7 +19,7 @@ An example project can be found [here](https://github.com/redskap/swagger-brake-
         <plugin>
             <groupId>io.redskap</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>1.0.0</version>
+            <version>2.0.0</version>
             <executions>
                 <execution>
                     <goals>
