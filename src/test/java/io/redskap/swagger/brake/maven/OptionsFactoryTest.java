@@ -69,4 +69,28 @@ public class OptionsFactoryTest {
         assertThat(result.getOutputFilePath()).isEqualTo(parameter.getOutputFilePath());
         assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
     }
+
+    @Test
+    public void testWhenOldApiIsProvidedDefaultMavenValuesAreIgnored() {
+        // given
+        RunnerParameter parameter = RunnerParameter.builder()
+          .newApi("newApi")
+          .oldApi("oldApi")
+          .groupId("groupId")
+          .artifactId("artifactId")
+          .currentVersion("currentVersion")
+          .outputFilePath("outputFilePath")
+          .outputFormats(ImmutableList.of("html"))
+          .build();
+        // when
+        Options result = OptionsFactory.create(parameter);
+        // then
+        assertThat(result.getNewApiPath()).isEqualTo(parameter.getNewApi());
+        assertThat(result.getOldApiPath()).isEqualTo(parameter.getOldApi());
+        assertThat(result.getOutputFilePath()).isEqualTo(parameter.getOutputFilePath());
+        assertThat(result.getOutputFormats()).isEqualTo(ImmutableSet.of(OutputFormat.HTML));
+        assertThat(result.getGroupId()).isNull();
+        assertThat(result.getArtifactId()).isNull();
+        assertThat(result.getCurrentArtifactVersion()).isNull();
+    }
 }
