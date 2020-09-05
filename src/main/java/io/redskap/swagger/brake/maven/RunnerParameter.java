@@ -24,4 +24,5 @@ public class RunnerParameter {
     private Boolean deprecatedApiDeletionAllowed;
     private String betaApiExtensionName;
     private String apiFilename;
+    private Collection<String> excludedPaths;
 }

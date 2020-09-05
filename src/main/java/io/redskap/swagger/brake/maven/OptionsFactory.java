@@ -4,10 +4,9 @@ import io.redskap.swagger.brake.runner.Options;
 import io.redskap.swagger.brake.runner.OutputFormat;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
+import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
 
 public class OptionsFactory {
@@ -27,13 +26,14 @@ public class OptionsFactory {
         options.setDeprecatedApiDeletionAllowed(parameter.getDeprecatedApiDeletionAllowed());
         options.setBetaApiExtensionName(parameter.getBetaApiExtensionName());
         options.setApiFilename(parameter.getApiFilename());
+        options.setExcludedPaths(new HashSet<>(Optional.ofNullable(parameter.getExcludedPaths()).orElse(emptySet())));
         return options;
     }
 
     private static Set<OutputFormat> resolveOutputFormats(RunnerParameter parameter) {
         Collection<String> formats = parameter.getOutputFormats();
         if (CollectionUtils.isEmpty(formats)) {
-            return Collections.emptySet();
+            return emptySet();
         }
         return formats.stream().map(String::toUpperCase).map(OutputFormat::valueOf).collect(toSet());
     }

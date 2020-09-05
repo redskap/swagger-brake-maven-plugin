@@ -12,7 +12,9 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Mojo(name = "check", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public class SwaggerBrakeMojo extends AbstractMojo {
@@ -58,6 +60,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "apiFilename", required = false)
     private String apiFilename;
 
+    @Parameter(name = "excludedPaths", required = false)
+    private List<String> excludedPaths;
+
     private final Executor executor = new Executor(new StarterWrapper(), getLog());
     
     private final OptionsValidator optionsValidator = new OptionsValidator();
@@ -88,6 +93,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)
                 .betaApiExtensionName(betaApiExtensionName)
                 .apiFilename(apiFilename)
+                .excludedPaths(excludedPaths)
                 .build();
     }
 

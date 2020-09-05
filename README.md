@@ -58,6 +58,7 @@ The following plugin properties are configurable:
 - `betaApiExtensionName` - Defines which vendor extension attribute to use for denoting the beta APIs. More info [here](https://github.com/redskap/swagger-brake#beta-api-support).
 - `apiFilename` - Specifies the filename of the contract within the downloaded artifact. More info [here](https://github.com/redskap/swagger-brake#latest-artifact-resolution).
 - `currentVersion` - Specifies the version of the currently built artifact. Defaults to the project version. More info [here](https://github.com/redskap/swagger-brake#latest-artifact-resolution).
+- `excludedPaths` - Specifies the excluded paths from the scan. More info [here](https://github.com/redskap/swagger-brake#excluding-specific-paths-from-the-scan).
 
 ## License
 ```text
