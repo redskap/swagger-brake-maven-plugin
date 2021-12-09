@@ -45,6 +45,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "currentVersion", required = false, defaultValue = "${project.version}")
     private String currentVersion;
 
+    @Parameter(name = "packaging", required = false, defaultValue = "${project.packaging}")
+    private String packaging;
+
     @Parameter(name = "outputFilePath", required = false, defaultValue = "${project.build.directory}/swagger-brake")
     private String outputFilePath;
 
@@ -88,6 +91,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .groupId(groupId)
                 .artifactId(artifactId)
                 .currentVersion(currentVersion)
+                .artifactPackaging(packaging)
                 .outputFilePath(outputFilePath)
                 .outputFormats(oFormats)
                 .deprecatedApiDeletionAllowed(deprecatedApiDeletionAllowed)

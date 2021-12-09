@@ -19,6 +19,7 @@ public class RunnerParameter {
     private String groupId;
     private String artifactId;
     private String currentVersion;
+    private String artifactPackaging;
     private String outputFilePath;
     private Collection<String> outputFormats;
     private Boolean deprecatedApiDeletionAllowed;
