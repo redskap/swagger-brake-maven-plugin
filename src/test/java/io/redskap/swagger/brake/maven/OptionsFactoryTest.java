@@ -8,6 +8,7 @@ import io.redskap.swagger.brake.runner.ArtifactPackaging;
 import io.redskap.swagger.brake.runner.Options;
 import io.redskap.swagger.brake.runner.OutputFormat;
 import org.junit.Test;
+import org.mockito.internal.util.collections.Sets;
 
 public class OptionsFactoryTest {
     @Test
@@ -27,6 +28,8 @@ public class OptionsFactoryTest {
             .outputFormats(ImmutableList.of("HTML"))
             .deprecatedApiDeletionAllowed(true)
             .betaApiExtensionName("something.yaml")
+            .excludedPaths(Sets.newSet("/pet"))
+            .ignoredBreakingChangeRules(Sets.newSet("R001", "R002"))
             .build();
         // when
         Options result = OptionsFactory.create(parameter);
@@ -45,6 +48,8 @@ public class OptionsFactoryTest {
         assertThat(result.getDeprecatedApiDeletionAllowed()).isEqualTo(parameter.getDeprecatedApiDeletionAllowed());
         assertThat(result.getBetaApiExtensionName()).isEqualTo(parameter.getBetaApiExtensionName());
         assertThat(result.getApiFilename()).isEqualTo(parameter.getApiFilename());
+        assertThat(result.getExcludedPaths()).isEqualTo(parameter.getExcludedPaths());
+        assertThat(result.getIgnoredBreakingChangeRules()).isEqualTo(parameter.getIgnoredBreakingChangeRules());
     }
 
     @Test

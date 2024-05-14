@@ -26,4 +26,5 @@ public class RunnerParameter {
     private String betaApiExtensionName;
     private String apiFilename;
     private Collection<String> excludedPaths;
+    private Collection<String> ignoredBreakingChangeRules;
 }

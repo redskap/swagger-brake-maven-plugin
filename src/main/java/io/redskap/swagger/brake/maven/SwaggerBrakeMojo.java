@@ -66,6 +66,9 @@ public class SwaggerBrakeMojo extends AbstractMojo {
     @Parameter(name = "excludedPaths", required = false)
     private List<String> excludedPaths;
 
+    @Parameter(name = "ignoredBreakingChangeRules", required = false)
+    private List<String> ignoredBreakingChangeRules;
+
     private final Executor executor = new Executor(new StarterWrapper(), getLog());
     
     private final OptionsValidator optionsValidator = new OptionsValidator();
@@ -98,6 +101,7 @@ public class SwaggerBrakeMojo extends AbstractMojo {
                 .betaApiExtensionName(betaApiExtensionName)
                 .apiFilename(apiFilename)
                 .excludedPaths(excludedPaths)
+                .ignoredBreakingChangeRules(ignoredBreakingChangeRules)
                 .build();
     }
 

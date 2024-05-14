@@ -30,6 +30,7 @@ public class OptionsFactory {
         options.setBetaApiExtensionName(parameter.getBetaApiExtensionName());
         options.setApiFilename(parameter.getApiFilename());
         options.setExcludedPaths(new HashSet<>(Optional.ofNullable(parameter.getExcludedPaths()).orElse(emptySet())));
+        options.setIgnoredBreakingChangeRules(new HashSet<>(Optional.ofNullable(parameter.getIgnoredBreakingChangeRules()).orElse(emptySet())));
         return options;
     }
 
